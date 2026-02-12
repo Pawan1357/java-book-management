@@ -24,6 +24,7 @@ public class LibraryManagementApplication {
 	}
 
 	@Bean
+	@org.springframework.context.annotation.Profile("!test")
 	CommandLineRunner testUserService(UserService userService) {
 	    return args -> {
 		
