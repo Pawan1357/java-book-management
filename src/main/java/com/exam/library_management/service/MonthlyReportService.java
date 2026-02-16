@@ -6,6 +6,7 @@ import com.exam.library_management.entity.BorrowRecord;
 import com.exam.library_management.repository.BorrowRecordRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Profile("!test")
 @RequiredArgsConstructor
 public class MonthlyReportService {
 

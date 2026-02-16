@@ -12,7 +12,9 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-@SpringBootTest
+@SpringBootTest(properties = {
+        "spring.task.scheduling.enabled=false"
+})
 @AutoConfigureMockMvc
 @Testcontainers
 @ActiveProfiles("test")
@@ -38,6 +40,7 @@ public abstract class BaseIntegrationTest {
     @BeforeEach
     void cleanDatabase() {
         jdbcTemplate.execute("SET FOREIGN_KEY_CHECKS = 0");
+        jdbcTemplate.execute("TRUNCATE TABLE borrow_records");
         jdbcTemplate.execute("TRUNCATE TABLE books");
         jdbcTemplate.execute("TRUNCATE TABLE users");
         jdbcTemplate.execute("SET FOREIGN_KEY_CHECKS = 1");
